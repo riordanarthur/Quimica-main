@@ -59,6 +59,7 @@ function dragenter(event) {
 function dragover(event ) {
     event.preventDefault()
     
+    console.log("evento")
     // this = dropzone
     this.classList.add('over')
 
