@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> VirtualLab </title>
+
+    <link rel="stylesheet" href="/Quimica-main/public/mixstyle.css">
+    <link rel="stylesheet" href="/Quimica-main/public/navBar.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <section>
+        <nav>
+            <label class="logo">Quimical Lab</label>
+            <ul>
+                <li><a class="active" href="/Quimica-main/pages/pagIn.html">Home</a></li>
+                <li>
+                   <a href="#">Experimentos
+                   <i class="fas fa-caret-down"></i>
+                   </a>
+                   <ul>
+                      <li><a href="#">Mudança de cor
+                         <ul id="ul-etapas">
+                            <li><a href="/Quimica-main/pages/sinopse.html">Sinopse</a></li>
+                            <li><a href="/Quimica-main/pages/ingredients.html">Ingredientes</a></li>
+                            <li><a href="/Quimica-main/pages/mix.html">Laboratorio</a></li>
+                         </ul>
+                      </a></li>
+                      <li><a href="#">Exp2</a></li>
+                      <li><a href="#">Exp3</a></li>
+                   </ul>
+                </li>
+             </ul>           
+        </nav>
+
+        <details class="collapse">
+            <summary class="title">Revisar Receita <div class="maisexpand">&#43;</div> </summary>
+            <div class="description">
+                Nesta etapa você deverá selecionar um dos cards do quadro e arrastá-lo o vaso de água em baixo! <br>
+                Lembrando sempre de seguir as instruções da receita, para que o experimento tenha sucesso. <br> 
+                - 1 comprimido de permanganato de potássio<br>
+                - 20ml de vinagre branco<br>
+                - 20ml de água oxigenada de 20 vol.<br>
+            </div>
+        </details>
+
+        <div id="dropup">
+            <div class="boards">
+                <div class="board">
+                    <h3>Escolha uma dessas cartas, e arraste para o vaso de água.</h3>
+                    <div id="ingredients" class="dropzone">
+                        <div class="card" id="comom-pilule" draggable="true" style="cursor:pointer">
+                            <div class="content"> Vinagre Balsâmico</div>
+                            <img class="ingredi2" src="/Quimica-main/public/icones/Balsamico-Branco-PT 1.svg" draggable="false">
+                        </div>
+                        
+                        <div class="card" id="permanganate-pilule" draggable="true"  style="cursor:pointer">
+                            <div class="content"> Vinagre de Álcool</div>
+                            <img class="ingredi2" src="/Quimica-main/public/icones/vinagrealcool 1.svg" draggable="false">
+                        </div>   
+
+                        <div class="card" id="comom-pilule" draggable="true"  style="cursor:pointer">
+                            <div class="content"> Vinagre de maçã</div>
+                            <img class="ingredi2" src="/Quimica-main/public/icones/vinagremaca 1.svg" draggable="false">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <div id="dropdown">
+            <div class="board">
+                <h3></h3>
+                <div id="mixer-board" class="dropzone" draggable="false">
+                    <div class="card"id="water" draggable="false" >
+                        <div class="content"draggable="false"> Vaso De Água</div>
+                        <img class="Flask" src="/Quimica-main/public/icones/frasco1.svg" draggable="false"></img>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div id="modal-mixer-container">
+                <div id="modal-mixer" class="modal">
+                    <div class="modal-content">
+                        <button id="button1" class="button" onclick="closeModal('modal-mixer')">X</button>
+                        <h1 class="h1-modal">
+                            Agora adicione a quantidade exata do componente no frasco! <br>
+                            Atenção, somente a combinação certa com a quantidade exata da substancia te permitirá avançar para proxima fase!
+                            <div class="slidecontainer">
+                                <input type="range" min="0" max="100" value="50" class="slider" id="quantity">
+                                <h5 id="slider-value">50</h5> <span id="span-modal">ML:</span>
+                            </div>
+                            <button id="button3" class="button" onclick="mixRecipe2()">Misturar</button>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-true" class="modal">
+            <div class="modal-content">
+                <button id="button1" class="button" onclick="closeModal('modal-true')">X</button>
+                    <img id="imgsucess2" class="tremor" src="/Quimica-main/public/icones/frasco-modal.svg">
+                
+                <h1 class="h1-modal-sucess">
+                    Parabéns, o processo de mistura das substâncias foi um sucesso!!!! <br>
+                    Clique em avançar, para segui para proxima etapa.
+                    <a href="/Quimica-main/pages/mix3.html"><button id="button2" class="button">Avançar</button></a>
+                </h1>
+                <h2 class="h2-modal-sucess">Passe o mouse sobre a imagem</h2>
+            </div>
+        </div>
+        
+        <div id="modal-false" class="modal">
+            <div class="modal-content">
+                <button id="button1" class="button" onclick="closeModal('modal-false')">X</button>
+                <img id="imgfracass" class="tremor" src="/Quimica-main/public/icones/frasco-fracasso 1.svg">
+                <h1 class="h1-modal-fracass">
+                    O processo de mistura das substâncias fracassou!!!! <br>
+                    Clique em fechar e tente novamente. <br>
+                    Caso não se lembre da substância correta, tente rever a receita no topo da página
+                </h1>
+                <h2 class="h2-modal-sucess">Passe o mouse sobre a imagem</h2>
+            </div>
+        </div>
+    </section>
+    <footer>Quimical Lab</footer>
+
+
+    <script src="/Quimica-main/public/mix1.js" defer></script>
+    
+</body>
+</html>
